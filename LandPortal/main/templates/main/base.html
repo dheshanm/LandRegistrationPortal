@@ -1,0 +1,167 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Land Registration Portal</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href=" {% static 'main/css/open-iconic-bootstrap.min.css' %} ">
+    <link rel="stylesheet" href=" {% static 'main/css/animate.css' %} ">
+    
+    <link rel="stylesheet" href=" {% static 'main/css/owl.carousel.min.css' %} ">
+    <link rel="stylesheet" href=" {% static 'main/css/owl.theme.default.min.css' %} ">
+    <link rel="stylesheet" href=" {% static 'main/css/magnific-popup.css' %} ">
+
+    <link rel="stylesheet" href=" {% static 'main/css/aos.css' %} ">
+
+    <link rel="stylesheet" href=" {% static 'main/css/ionicons.min.css' %} ">
+
+    <link rel="stylesheet" href=" {% static 'main/css/bootstrap-datepicker.css' %} ">
+    <link rel="stylesheet" href=" {% static 'main/css/jquery.timepicker.css' %} ">
+
+    
+    <link rel="stylesheet" href=" {% static 'main/css/flaticon.css' %} ">
+    <link rel="stylesheet" href=" {% static 'main/css/icomoon.css' %} ">
+    <link rel="stylesheet" href=" {% static 'main/css/style.css' %} ">
+  </head>
+  <style>
+    .google-maps {
+        position: relative;
+        padding-bottom: 75%; // This is the aspect ratio
+        height: 0;
+        overflow: hidden;
+    }
+    .google-maps iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+    }
+</style>
+  <body>
+    
+	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href=" {% url 'main:home' %} ">Land Registration Portal</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item active"><a href=" {% url 'main:home' %} " class="nav-link">Home</a></li>
+	          <li class="nav-item"><a href=" {% url 'main:about' %} " class="nav-link">About</a></li>
+	          <li class="nav-item"><a href=" {% url 'main:services' %} " class="nav-link">Services</a></li>
+	          <li class="nav-item"><a href=" {% url 'main:register' %} " class="nav-link">Register</a></li>
+	          <li class="nav-item"><a href=" {% static 'main/blog.html' %} " class="nav-link">Look Up</a></li>
+	          <li class="nav-item"><a href=" {% url 'main:contact' %} " class="nav-link">Contact</a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+    <!-- END nav -->
+    
+    {% block content %}
+	{% endblock %}
+
+    <footer class="ftco-footer ftco-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Land Registration Portal</h2>
+              <p>The most convienient, and the secure way to register lands.</p>
+              <ul class="ftco-footer-social list-unstyled mt-5">
+                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-4">
+              <h2 class="ftco-heading-2">Services Offered</h2>
+              <ul class="list-unstyled">
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Search Properties</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Register Properties</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Apply for Review</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>FAQs</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-4">
+              <h2 class="ftco-heading-2">About Us</h2>
+              <ul class="list-unstyled">
+                <li><a href="{% url 'main:services' %}"><span class="icon-long-arrow-right mr-2"></span>How it Works?</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Meet the team</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Careers</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+             <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Company</h2>
+              <ul class="list-unstyled">
+                <li><a href="{% url 'main:contact' %}"><span class="icon-long-arrow-right mr-2"></span>About Us</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Press</a></li>
+                <li><a href="{% url 'main:contact' %}"><span class="icon-long-arrow-right mr-2"></span>Contact</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Careers</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+            	<div class="block-23 mb-3">
+	              <ul>
+	                <li><span class="icon icon-map-marker"></span><span class="text">VIT University, Vellore, Tamilnadu, India</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+91 392 3929 210</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope pr-4"></span><span class="text">helpdesk@landreg.gov</span></a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+	
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src=" {% static 'main/js/jquery.min.js' %} "></script>
+  <script src=" {% static 'main/js/jquery-migrate-3.0.1.min.js' %} "></script>
+  <script src=" {% static 'main/js/popper.min.js' %} "></script>
+  <script src=" {% static 'main/js/bootstrap.min.js' %} "></script>
+  <script src=" {% static 'main/js/jquery.easing.1.3.js' %} "></script>
+  <script src=" {% static 'main/js/jquery.waypoints.min.js' %} "></script>
+  <script src=" {% static 'main/js/jquery.stellar.min.js' %} "></script>
+  <script src=" {% static 'main/js/owl.carousel.min.js' %} "></script>
+  <script src=" {% static 'main/js/jquery.magnific-popup.min.js' %} "></script>
+  <script src=" {% static 'main/js/aos.js' %} "></script>
+  <script src=" {% static 'main/js/jquery.animateNumber.min.js' %} "></script>
+  <script src=" {% static 'main/js/bootstrap-datepicker.js' %} "></script>
+  <script src=" {% static 'main/js/jquery.timepicker.min.js' %} "></script>
+  <script src=" {% static 'main/js/scrollax.min.js' %} "></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src=" {% static 'main/js/google-map.js' %} "></script>
+  <script src=" {% static 'main/js/main.js' %} "></script>
+    
+  </body>
+</html>
