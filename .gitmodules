@@ -1,0 +1,3 @@
+[submodule "python_blockchain_app"]
+	path = python_blockchain_app
+	url = git@github.com:L4TTiCe/python_blockchain_app.git

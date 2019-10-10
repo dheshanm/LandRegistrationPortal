@@ -1,5 +1,6 @@
 {% extends "main/base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 	<section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight" style="background-image: url(' {% static 'main/images/bg_1.jpg' %} ');" data-stellar-background-ratio="0.5">
@@ -44,15 +45,30 @@
 							    </li>
 							  </ul>
 							</div>
+						
+						<form method="post">
+    						{% csrf_token %}
+						  	<div class="tab-content" id="pills-tabContent">
+								<div class="tab-pane fade" id="pills-land" role="tabpanel" aria-labelledby="pills-land-tab">
+									{{ form.Land_state | as_crispy_field }}
+									{{ form.Land_district | as_crispy_field }}
+									{{ form.Land_taluk | as_crispy_field }}
+									{{ form.Land_village | as_crispy_field }}
+									{{ form.Land_survey_number | as_crispy_field }}
+									{{ form.Land_subdivision_number | as_crispy_field }}									
+								</div>
 
-						  <div class="tab-content" id="pills-tabContent">
-						    {% include "main/fragments/register/owner_f.html" %}
+								<div class="tab-pane fade show active" id="pills-owner" role="tabpanel" aria-labelledby="pills-owner-tab">
+									{{ form.LandHolder_aadhaar | as_crispy_field }}
+								</div>
 
-						    {% include "main/fragments/register/land_f.html" %}
-
-						    {% include "main/fragments/register/review_f.html" %}
-						  </div>
-						</div>
+								<div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
+									<p>Press the Submit button to Submit your details. </p>
+									<button type="submit" class="btn btn-primary">Submit</button>
+								</div>
+						  	</div>
+						</form>
+					</div>
 		      </div>
 				</div>
       </div>

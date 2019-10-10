@@ -1,4 +1,5 @@
 {% load static %}
+{% load bootstrap4 %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,8 +45,7 @@
     }
 </style>
   <body>
-    
-	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href=" {% url 'main:home' %} ">Land Registration Portal</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,7 +58,7 @@
 	          <li class="nav-item"><a href=" {% url 'main:about' %} " class="nav-link">About</a></li>
 	          <li class="nav-item"><a href=" {% url 'main:services' %} " class="nav-link">Services</a></li>
 	          <li class="nav-item"><a href=" {% url 'main:register' %} " class="nav-link">Register</a></li>
-	          <li class="nav-item"><a href=" {% static 'main/blog.html' %} " class="nav-link">Look Up</a></li>
+	          <li class="nav-item"><a href=" {% url 'main:lookup' %} " class="nav-link">Look Up</a></li>
 	          <li class="nav-item"><a href=" {% url 'main:contact' %} " class="nav-link">Contact</a></li>
 	        </ul>
 	      </div>
@@ -162,6 +162,10 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src=" {% static 'main/js/google-map.js' %} "></script>
   <script src=" {% static 'main/js/main.js' %} "></script>
-    
+  <script>
+    $(document).ready(function(){
+        $('.toast').toast('show')
+    });
+    </script>
   </body>
 </html>

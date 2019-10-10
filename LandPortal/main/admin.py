@@ -1,16 +1,55 @@
 from django.contrib import admin
-from .models import LandHolder, Land
+from .models import LandDetails, Transaction
+# from .models import LandHolder, Land
 
 # Register your models here.
 
-class LandHolderAdmin(admin.ModelAdmin):
-	fields = ["LandHolder_date_created",
-			  "LandHolder_aadhaar"]
+# class LandHolderAdmin(admin.ModelAdmin):
+# 	fields = ["LandHolder_date_created",
+# 			  "LandHolder_aadhaar"]
 
-class LandAdmin(admin.ModelAdmin):
+# class LandAdmin(admin.ModelAdmin):
+# 	fieldsets = [
+# 		("Date", {
+# 			'fields': ["Land_date_added"]
+# 		}),
+# 		("Land Metadata", {
+# 			'fields': ["Land_state",
+# 					   "Land_district",
+# 					   "Land_taluk",
+# 					   "Land_village",
+# 					   "Land_survey_number",
+# 					   "Land_subdivision_number"]
+# 		})
+# 	]
+
+# admin.site.register(LandHolder, LandHolderAdmin)
+# admin.site.register(Land, LandAdmin)
+
+class TransactionAdmin(admin.ModelAdmin):
 	fieldsets = [
-		("Date", {
-			'fields': ["Land_date_added"]
+		("Land Holder", {
+			'fields': ["LandHolder_aadhaar"]
+		}),
+		("Land Metadata", {
+			'fields': ["Land_state",
+					   "Land_district",
+					   "Land_taluk",
+					   "Land_village",
+					   "Land_survey_number",
+					   "Land_subdivision_number"]
+		}),
+		("Metadata", {
+			'fields': ["block_timestamp",
+					   "block_index",
+					   "block_hash"]
+		})
+	]
+
+class LandDetailsAdmin(admin.ModelAdmin):
+	fieldsets = [
+		("Land Holder", {
+			'fields': ["LandHolder_aadhaar"]
 		}),
 		("Land Metadata", {
 			'fields': ["Land_state",
@@ -22,5 +61,5 @@ class LandAdmin(admin.ModelAdmin):
 		})
 	]
 
-admin.site.register(LandHolder, LandHolderAdmin)
-admin.site.register(Land, LandAdmin)
+# admin.site.register(LandDetails, LandDetailsAdmin)
+admin.site.register(Transaction, TransactionAdmin)
