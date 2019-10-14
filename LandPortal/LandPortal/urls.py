@@ -22,7 +22,7 @@ from rest_framework import routers, serializers, viewsets
 router = routers.DefaultRouter()
 
 urlpatterns = [
-    url(r'^', include(router.urls)),
+    # url(r'^', include(router.urls)),
     path('', include('main.urls')),
     path('admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls')),

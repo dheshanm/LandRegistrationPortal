@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import LandDetailsForm, ZeroForm
-from .models import Transaction
+from .models import Transaction, Block
 from django.shortcuts import redirect
 from django.contrib import messages
 from datetime import datetime
@@ -12,7 +12,8 @@ import json
 CONNECTED_NODE_ADDRESS = "http://127.0.0.1:8001"
 
 # Create your views here.
-data = []
+t_data = []
+b_data = []
 
 def fetch_data():
     """
@@ -23,40 +24,57 @@ def fetch_data():
     response = requests.get(get_chain_address)
     if response.status_code == 200:
         content = []
+        blocks = []
         chain = json.loads(response.content)
         for block in chain["chain"]:
-            for tx in block["transactions"]:
-                tx["index"] = block["index"]
-                tx["hash"] = block["previous_hash"]
-                content.append(tx)
+            blocks.append(block)
+            for tran in block["transactions"]:
+                content.append(tran)
 
-        global data
-        data = sorted(content, key=lambda k: k['timestamp'],
-                       reverse=True)
+        global t_data, b_data
+        t_data = sorted(content, key=lambda k: k['timestamp'], reverse=True)
+        b_data = sorted(blocks, key=lambda k: k['timestamp'], reverse=True)
 
 def populateDB():
-	global data
+	global t_data, b_data
 	fetch_data()
 
 	queryset = Transaction.objects.all().order_by('-timestamp')
 
-	for block in data:
-		new_t_id = block['transaction_id']
+	for tran in t_data:
+		new_t_id = tran['transaction_id']
 		try:
 			transact = Transaction.objects.get(transaction_id=new_t_id)
 		except Transaction.DoesNotExist:
 			t = Transaction(
-				transaction_id=block["transaction_id"], 
-				LandHolder_aadhaar=block["LandHolder_aadhaar"], 
-				Land_state=block["Land_state"], 
-				Land_district=block["Land_district"], 
-				Land_taluk=block["Land_taluk"], 
-				Land_village=block["Land_village"], 
-				Land_survey_number=block["Land_survey_number"],
-				Land_subdivision_number=block["Land_subdivision_number"], 
-				block_timestamp=datetime.fromtimestamp(block["timestamp"]), 
-				block_index=block["index"], block_hash=block["hash"])
+				transaction_id=tran["transaction_id"], 
+
+				LandHolder_aadhaar=tran["LandHolder_aadhaar"], 
+
+				Land_state=tran["Land_state"], 
+				Land_district=tran["Land_district"], 
+				Land_taluk=tran["Land_taluk"], 
+				Land_village=tran["Land_village"], 
+				Land_survey_number=tran["Land_survey_number"],
+				Land_subdivision_number=tran["Land_subdivision_number"],
+
+				timestamp=datetime.fromtimestamp(tran["timestamp"]))
+
 			t.save()
+
+	for block in b_data:
+		new_b_hash = block['hash']
+		try:
+			transact = Block.objects.get(hash=new_b_hash)
+		except Block.DoesNotExist:
+			b = Block(
+				index=block["index"],
+				timestamp=datetime.fromtimestamp(block["timestamp"]),
+				previous_hash=block["previous_hash"],
+				nonce=block["nonce"],
+				hash=block["hash"]
+			)
+			b.save()
 
 
 def home(request):
@@ -102,6 +120,7 @@ def register(request):
 			# Things to do before save
 			data_object = {
 				'transaction_id': str(data.transaction_id),
+
 				'LandHolder_aadhaar': data.LandHolder_aadhaar,
 
 				'Land_state': data.Land_state,

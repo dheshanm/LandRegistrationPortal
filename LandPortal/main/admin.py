@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import LandDetails, Transaction
+from .models import LandDetail, Transaction, Block
 # from .models import LandHolder, Land
 
 # Register your models here.
@@ -38,11 +38,17 @@ class TransactionAdmin(admin.ModelAdmin):
 					   "Land_village",
 					   "Land_survey_number",
 					   "Land_subdivision_number"]
-		}),
-		("Metadata", {
-			'fields': ["block_timestamp",
-					   "block_index",
-					   "block_hash"]
+		})
+	]
+
+class BlockAdmin(admin.ModelAdmin):
+	fieldsets = [
+		("Block Details", {
+			'fields': ["index",
+					   "timestamp",
+					   "previous_hash",
+					   "nonce",
+					   "hash"]
 		})
 	]
 
@@ -63,3 +69,4 @@ class LandDetailsAdmin(admin.ModelAdmin):
 
 # admin.site.register(LandDetails, LandDetailsAdmin)
 admin.site.register(Transaction, TransactionAdmin)
+admin.site.register(Block, BlockAdmin)

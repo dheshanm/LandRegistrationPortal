@@ -27,7 +27,7 @@ class FormZero(models.Model):
 
 # 	Land_date_added = models.DateTimeField("Date Created", default=timezone.now)
 
-class LandDetails(models.Model):
+class LandDetail(models.Model):
 	transaction_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 	LandHolder_aadhaar = models.CharField("Aadhaar Number", max_length=12, validators=[RegexValidator(r'^\d{12}$')])
 	transaction_time = models.DateTimeField("Time Created", default=timezone.now)
@@ -43,8 +43,20 @@ class LandDetails(models.Model):
 	def __str__(self):
 		return str("TransactionID: " + str(self.transaction_id)+"\nUser: " + str(self.LandHolder_aadhaar))
 
+class Chain(models.Model):
+	length = models.PositiveIntegerField("Length")
+
+class Block(models.Model):
+	index = models.PositiveIntegerField("index")
+
+	timestamp = models.DateTimeField("Time Created")
+	previous_hash = models.CharField("Previous Hash", max_length=150, null=True)
+	nonce = models.PositiveIntegerField("Nonce")
+	hash = models.CharField("Hash", max_length=150)
+
 class Transaction(models.Model):
 	transaction_id = models.CharField("TransactionID", max_length=150, primary_key=True)
+
 	LandHolder_aadhaar = models.CharField("Aadhaar Number", max_length=12)
 
 	Land_state = models.CharField("State", max_length=150)
@@ -54,10 +66,15 @@ class Transaction(models.Model):
 	Land_survey_number = models.PositiveIntegerField("Survey Number")
 	Land_subdivision_number = models.PositiveIntegerField("Subdivision Number")
 
-	block_timestamp = models.DateTimeField("Time Created")
-	block_index = models.PositiveIntegerField("Block #")
-	block_hash = models.CharField("Hash", max_length=150)
-
+	timestamp = models.DateTimeField("Time Created")
 
 	def __str__(self):
 		return str("TransactionID: " + str(self.transaction_id)+"\nUser: " + str(self.LandHolder_aadhaar))
+
+class T2B(models.Model):
+	transaction = models.ForeignKey("Transaction", on_delete=models.CASCADE)
+	block = models.ForeignKey("Block", on_delete=models.CASCADE)
+
+class B2C(models.Model):
+	block = models.ForeignKey("Block", on_delete=models.CASCADE)
+	chain = models.ForeignKey("Chain", on_delete=models.CASCADE)
