@@ -34,7 +34,7 @@ This implementation of Registration portal, works with the help of 2 servers, a 
       $ flask run --port 8001
       
       $ python run_app.py
-      ```bash
+      ```
       This will start the blockchain server, which will be listening on port 8001
       
   4. Now, with both the servers started, visit the Django's Development server which is running at 127.0.0.1:8000
