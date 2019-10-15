@@ -46,6 +46,10 @@ class LandDetail(models.Model):
 class Chain(models.Model):
 	length = models.PositiveIntegerField("Length")
 
+class Peer(models.Model):
+	IP = models.CharField("IP", max_length=150, null=True)
+	chain = models.ForeignKey("Chain", related_name='peers', on_delete=models.CASCADE)
+
 class Block(models.Model):
 	index = models.PositiveIntegerField("index")
 
@@ -53,6 +57,11 @@ class Block(models.Model):
 	previous_hash = models.CharField("Previous Hash", max_length=150, null=True)
 	nonce = models.PositiveIntegerField("Nonce")
 	hash = models.CharField("Hash", max_length=150)
+
+	chain = models.ForeignKey("Chain", related_name='chain', on_delete=models.CASCADE)
+
+	def __str__(self):
+		return str("Index: " + str(self.index))
 
 class Transaction(models.Model):
 	transaction_id = models.CharField("TransactionID", max_length=150, primary_key=True)
@@ -67,6 +76,7 @@ class Transaction(models.Model):
 	Land_subdivision_number = models.PositiveIntegerField("Subdivision Number")
 
 	timestamp = models.DateTimeField("Time Created")
+	block = models.ForeignKey("Block", related_name='transactions', on_delete=models.CASCADE)
 
 	def __str__(self):
 		return str("TransactionID: " + str(self.transaction_id)+"\nUser: " + str(self.LandHolder_aadhaar))
@@ -74,6 +84,9 @@ class Transaction(models.Model):
 class T2B(models.Model):
 	transaction = models.ForeignKey("Transaction", on_delete=models.CASCADE)
 	block = models.ForeignKey("Block", on_delete=models.CASCADE)
+
+	def __str__(self):
+		return str("BlockID: " + str(self.block.index)+"\nTransactionID: " + str(self.transaction.transaction_id))
 
 class B2C(models.Model):
 	block = models.ForeignKey("Block", on_delete=models.CASCADE)
