@@ -10,18 +10,18 @@
           	<div class="text text-center">
 	            <h1 class="mb-4">Most Convinient <br>Way to Register Property</h1>
 	            <p style="font-size: 18px;">Register your properties in an effortless and paperless fasion, using the relaibility and the security offered by Blockchains.</p>
-	            <form action="#" class="search-location mt-md-5">
-		        		<div class="row justify-content-center">
-		        			<div class="col-lg-10 align-items-end">
-		        				<div class="form-group">
-		          				<div class="form-field">
-				                <input type="text" class="form-control" placeholder="Search Aadhaar">
-				                <button><span class="ion-ios-search"></span></button>
-				              </div>
-			              </div>
-		        			</div>
-		        		</div>
-		        	</form>
+	            <form method="get" action="{% url 'main:search_results' %}" class="search-location mt-md-5">
+					<div class="row justify-content-center">
+						<div class="col-lg-10 align-items-end">
+							<div class="form-group">
+							<div class="form-field">
+								<input name="q" type="text" class="form-control" placeholder="Search Aadhaar">
+								<button type="submit"><span class="ion-ios-search"></span></button>
+							</div>
+							</div>
+						</div>
+					</div>
+				</form>
             </div>
           </div>
         </div>

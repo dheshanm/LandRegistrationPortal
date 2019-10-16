@@ -1,3 +1,5 @@
-LandPortal/LandPortal/__pycache__/
-LandPortal/main/__pycache__/
+LandPortal/LandPortal/__pycache__/*.pyc
+LandPortal/main/migrations/__pycache__/*.pyc
+LandPortal/main/__pycache__/*.pyc
+LandPortal/main/migrations/
 LandPortal/db.sqlite3

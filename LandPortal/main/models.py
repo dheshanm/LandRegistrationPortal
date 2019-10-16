@@ -10,26 +10,9 @@ STATE_CHOICES = (("Andhra Pradesh","Andhra Pradesh"),("Arunachal Pradesh ","Arun
 class FormZero(models.Model):
 	date_created = models.DateTimeField("Date Created", default=timezone.now)
 
-# class LandHolder(models.Model):
-# 	LandHolder_aadhaar = models.CharField("Aadhaar Number", primary_key=True, unique=True, max_length=12, validators=[RegexValidator(r'^\d{12}$')])
-# 	LandHolder_date_created = models.DateTimeField("Date Created", default=timezone.now)
-
-# 	def __str__(self):
-# 		return str("UserID: " + str(self.LandHolder_aadhaar)+"\ndateCreated: " + str(self.LandHolder_date_created))
-
-# class Land(models.Model):
-# 	Land_state = models.CharField("State", choices=STATE_CHOICES, max_length=150)
-# 	Land_district = models.CharField("District", help_text="Enter the District, under whose jurisdiction the Land falls under.", max_length=150)
-# 	Land_taluk = models.CharField("Taluk", max_length=150)
-# 	Land_village = models.CharField("Village", max_length=150)
-# 	Land_survey_number = models.PositiveIntegerField("Survey Number", validators=[MinValueValidator(1)])
-# 	Land_subdivision_number = models.PositiveIntegerField("Subdivision Number", validators=[MinValueValidator(1)])
-
-# 	Land_date_added = models.DateTimeField("Date Created", default=timezone.now)
-
 class LandDetail(models.Model):
 	transaction_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-	LandHolder_aadhaar = models.CharField("Aadhaar Number", max_length=12, validators=[RegexValidator(r'^\d{12}$')])
+	LandHolder_aadhaar = models.CharField("Aadhaar Number", max_length=20, validators=[RegexValidator(r'^\d{12}$')])
 	transaction_time = models.DateTimeField("Time Created", default=timezone.now)
 
 	Land_state = models.CharField("State", choices=STATE_CHOICES, max_length=150)
@@ -74,6 +57,8 @@ class Transaction(models.Model):
 	Land_village = models.CharField("Village", max_length=150)
 	Land_survey_number = models.PositiveIntegerField("Survey Number")
 	Land_subdivision_number = models.PositiveIntegerField("Subdivision Number")
+
+	Land_hash = models.CharField("Hash", max_length=150)
 
 	timestamp = models.DateTimeField("Time Created")
 	block = models.ForeignKey("Block", related_name='transactions', on_delete=models.CASCADE)

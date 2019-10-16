@@ -24,5 +24,7 @@ urlpatterns = [
     path('services', views.services, name="services"),
     path('contact', views.contact, name="contact"),
     path('register', views.register, name="register"),
-    path('lookup', views.lookup, name="lookup"),
+    path('manage', views.manage, name="manage"),
+    path('results', views.SearchResultsView.as_view(), name='search_results'),
+    path('search', views.search, name='search'),
 ]

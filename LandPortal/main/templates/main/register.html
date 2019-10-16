@@ -74,3 +74,14 @@
       </div>
     </section>
 {% endblock %}
+
+{% block script %}
+	<script src=" {% static 'main/js/cleave.js' %} "></script>
+	<script>
+		var cleave = new Cleave('#id_LandHolder_aadhaar', {
+			delimiter: ' / ',
+			blocks: [4, 4, 4],
+			uppercase: true
+		});
+	</script>
+{% endblock %}

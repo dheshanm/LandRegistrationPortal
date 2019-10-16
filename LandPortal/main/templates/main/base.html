@@ -58,7 +58,8 @@
 	          <li class="nav-item"><a href=" {% url 'main:about' %} " class="nav-link">About</a></li>
 	          <li class="nav-item"><a href=" {% url 'main:services' %} " class="nav-link">Services</a></li>
 	          <li class="nav-item"><a href=" {% url 'main:register' %} " class="nav-link">Register</a></li>
-	          <li class="nav-item"><a href=" {% url 'main:lookup' %} " class="nav-link">Look Up</a></li>
+            <li class="nav-item"><a href=" {% url 'main:search' %} " class="nav-link">Search</a></li>
+	          <li class="nav-item"><a href=" {% url 'main:manage' %} " class="nav-link">Manage</a></li>
 	          <li class="nav-item"><a href=" {% url 'main:contact' %} " class="nav-link">Contact</a></li>
 	        </ul>
 	      </div>
@@ -67,7 +68,7 @@
     <!-- END nav -->
     
     {% block content %}
-	{% endblock %}
+	  {% endblock %}
 
     <footer class="ftco-footer ftco-section">
       <div class="container">
@@ -87,10 +88,10 @@
             <div class="ftco-footer-widget mb-4 ml-md-4">
               <h2 class="ftco-heading-2">Services Offered</h2>
               <ul class="list-unstyled">
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Search Properties</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Register Properties</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Apply for Review</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>FAQs</a></li>
+                <li><a href="{% url 'main:search' %}"><span class="icon-long-arrow-right mr-2"></span>Search Properties</a></li>
+                <li><a href="{% url 'main:register' %}"><span class="icon-long-arrow-right mr-2"></span>Register Properties</a></li>
+                <li><a href="{% url 'main:register' %}"><span class="icon-long-arrow-right mr-2"></span>Apply for Review</a></li>
+                <li><a href="{% url 'main:services' %}"><span class="icon-long-arrow-right mr-2"></span>FAQs</a></li>
               </ul>
             </div>
           </div>
@@ -99,8 +100,8 @@
               <h2 class="ftco-heading-2">About Us</h2>
               <ul class="list-unstyled">
                 <li><a href="{% url 'main:services' %}"><span class="icon-long-arrow-right mr-2"></span>How it Works?</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Meet the team</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Careers</a></li>
+                <li><a href="https://github.com/L4TTiCe"><span class="icon-long-arrow-right mr-2"></span>Github : User</a></li>
+                <li><a href="https://github.com/L4TTiCe/LandRegistrationPortal"><span class="icon-long-arrow-right mr-2"></span>Github : Project Source</a></li>
               </ul>
             </div>
           </div>
@@ -162,6 +163,8 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src=" {% static 'main/js/google-map.js' %} "></script>
   <script src=" {% static 'main/js/main.js' %} "></script>
+  {% block script %}
+	{% endblock %}
   <script>
     $(document).ready(function(){
         $('.toast').toast('show')

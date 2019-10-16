@@ -4,28 +4,6 @@ from .models import LandDetail, Transaction, Block, T2B
 
 # Register your models here.
 
-# class LandHolderAdmin(admin.ModelAdmin):
-# 	fields = ["LandHolder_date_created",
-# 			  "LandHolder_aadhaar"]
-
-# class LandAdmin(admin.ModelAdmin):
-# 	fieldsets = [
-# 		("Date", {
-# 			'fields': ["Land_date_added"]
-# 		}),
-# 		("Land Metadata", {
-# 			'fields': ["Land_state",
-# 					   "Land_district",
-# 					   "Land_taluk",
-# 					   "Land_village",
-# 					   "Land_survey_number",
-# 					   "Land_subdivision_number"]
-# 		})
-# 	]
-
-# admin.site.register(LandHolder, LandHolderAdmin)
-# admin.site.register(Land, LandAdmin)
-
 class TransactionAdmin(admin.ModelAdmin):
     fieldsets = [
         ("Metadata", {
@@ -40,7 +18,8 @@ class TransactionAdmin(admin.ModelAdmin):
                        "Land_taluk",
                        "Land_village",
                        "Land_survey_number",
-                       "Land_subdivision_number"]
+                       "Land_subdivision_number",
+                       "Land_hash"]
         }),
         ("Related Block", {
             'fields': ["block"]
