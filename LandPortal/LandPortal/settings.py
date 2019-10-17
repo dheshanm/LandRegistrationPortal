@@ -14,7 +14,10 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_DIR = "/home/django/LandRegistrationPortal/LandPortal/main"
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_media/')
+STATICFILES_DIRS = ( os.path.join(PROJECT_DIR,'static/'),)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -25,8 +28,8 @@ SECRET_KEY = '4)k+&rv5w6*-@eaj#b+(uuibne_0x+=#)3%da0-ftw+()8%z(^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
+ADMINS = [('Dheshan', 'dheshan.mail@gmail.com')]
 
 # Application definition
 
@@ -76,6 +79,17 @@ WSGI_APPLICATION = 'LandPortal.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'django',
+#	'USER': 'admin',
+#	'PASSWORD': 'dheshan1594',
+#       'HOST': 'localhost',
+#        'PORT': '',
+#    }
+#}
 
 DATABASES = {
     'default': {

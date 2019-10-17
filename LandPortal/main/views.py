@@ -13,7 +13,7 @@ import json
 from hashlib import sha256
 
 CONNECTED_NODE_ADDRESS = "http://127.0.0.1:8001"
-THIS_ADDRESS = "http://127.0.0.1:8000"
+THIS_ADDRESS = "http://127.0.0.1"
 
 # Create your views here.
 t_data = []
