@@ -208,9 +208,11 @@ def register(request):
 
             # Submit a transaction
             new_tx_address = "{}/new_transaction".format(CONNECTED_NODE_ADDRESS)
-            msg = requests.post(new_tx_address,
-                      json=data_object,
-                     headers={'Content-type': 'application/json'})
+            msg = requests.post(
+                new_tx_address,
+                json=data_object,
+                headers={'Content-type': 'application/json'}
+            )
 
             messages.info(request, msg)
             # data.save()

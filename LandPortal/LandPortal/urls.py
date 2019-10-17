@@ -43,6 +43,7 @@ class TransactionSerializer(serializers.HyperlinkedModelSerializer):
             "Land_village",
             "Land_survey_number",
             "Land_subdivision_number",
+            "Land_hash",
             "timestamp"
         ]
 
